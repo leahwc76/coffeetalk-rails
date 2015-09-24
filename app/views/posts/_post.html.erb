@@ -1,0 +1,4 @@
+<h2><%= post.title %></h2>
+<p><%= post.body %></p>
+<p><%= post.created_at %></p>
+<h4>by <%= link_to post.user.username, profile_user_path(post.user.username) %> | <%= link_to 'show', post %></h4>

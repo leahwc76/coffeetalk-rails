@@ -1,0 +1,37 @@
+<%= form_for @user do |f| %>
+	<p>
+		<%= f.label :fname %>
+		<%= f.text_field :fname %>
+	</p>
+	<p>
+		<%= f.label :lname %>
+		<%= f.text_field :lname %>
+	</p>
+	<p>
+		<%= f.label :fav_cafe %>
+		<%= f.text_field :fav_cafe %>
+	</p>
+	<p> 
+		<%= f.label :fav_coffee %>
+		<%= f.text_field :fav_coffee %>
+	</p>
+	<p>
+		<%= f.label :username %>
+		<%= f.text_field :username %>
+	</p>
+	<p>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</p>
+	<p>
+		<%= f.label :email %>
+		<%= f.email_field :email %>
+	</p>
+	<p>
+		<%= f.label :phone %>
+		<%= f.phone_field :phone %>
+	</p>
+	<p>
+		<%= f.submit(@user.new_record? ? "Sign Up" : "Edit Account") %>
+	</p>
+<% end %>

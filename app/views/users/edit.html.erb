@@ -1,0 +1,5 @@
+<h1>Edit <%= @user.fname %>'s Account</h1>
+<%= render 'form' %>
+<p><%= link_to 'cancel', users_path %></p>
+
+<h3><%= link_to 'Delete Account', @user, method: :delete, data: {confirm: "Are You Sure?"} %></h3>

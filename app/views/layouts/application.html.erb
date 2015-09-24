@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coffeetalk</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<header>
+		<nav>
+			<% if current_user %>
+			<span>Hello <%= link_to current_user.fname, profile_path %></span>
+				<%= link_to 'Sign Out', sessions_path, method: :delete %>
+				<%= link_to 'New Posts', new_post_path %>
+				<%= link_to 'All Posts', posts_path %>
+				<%= link_to 'All Users', users_path %>
+			<% else %>
+				<%= link_to 'Sign In', login_path %>
+				<%= link_to 'Sign Up', new_user_path %>
+			<% end %>
+		</nav>
+	</header>
+	<main>
+		<% if flash[:notice] %>
+			<div><%= flash[:notice] %></div>
+		<% end %>
+<%= yield %>
+
+	</main>
+
+</body>
+</html>

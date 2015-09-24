@@ -1,0 +1,44 @@
+<h1><%= @user.fname %></h1>
+<p>Favorite Cafe: <%= @user.fav_cafe %></p>
+<p>Favorite Coffee: <%= @user.fav_coffee %></p>
+
+<!-- edit profile below -->
+<% if current_user and @user == current_user %>
+	<p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
+<% end %>
+
+<!-- option to follow/unfollow below -->
+<ul>
+	<% if current_user and current_user != @user %>
+		<% if current_user.following.includes? @user %>
+			<p><%= button_to 'unfollow', unfollow_user_path(@user) %></p>
+		<!-- button to: posts, link to: gets -->
+		<% else %>
+			<p><%= button_to 'follow', follow_user_path(@user) %></p>
+		<% end %>
+	<% end %>
+</ul>
+
+<!-- listing followed/follower below -->
+<% if @user.followers.any? %>
+	<h3><%= @user.username %>'s Followers (<%= @user.followers.length %>) </h3>
+	<ul>
+		<% @user.followers.each do |user| %>
+			<li><%= link_to user.username, profile_user_path(user.username) %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @user.following.any? %>
+	<h3><%= @user.username %>'s Following (<%= @user.following.length %>)</h3>
+	<ul>
+		<% @user.following.each do |user| %>
+			<li><%= link_to user.username, profile_user_path(user.username) %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+
+<!-- listing @user's posts below -->
+<h3><%= @user.fname %>'s Posts</h3>
+<%= render @user.posts %>
