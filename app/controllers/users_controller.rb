@@ -25,12 +25,21 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     session[:user_id] = @user.id
-    redirect_to @user, notice: "New cup Poured!"
+    if @user.save
+      # session[:user_id] = @user.id
+      redirect_to @user, notice: "New cup Poured!"
+    else
+      render :new
+    end
   end
 
-  def udpate
+  def update
     @user.update(user_params)
-    redirect_to @user, notice: "Cup re-filled!"
+    if @user.save
+      redirect_to @user, notice: "Cup re-filled!"
+    else
+      render :edit
+    end
   end
 
   def destroy
